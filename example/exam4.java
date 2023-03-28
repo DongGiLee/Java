@@ -1,5 +1,6 @@
 package example;
 
+import java.util.ArrayList;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -120,11 +121,70 @@ public class exam4 {
         // fw.close();
 
         // FileWriter fw = new FileWriter("sample2.txt");
-        PrintWriter fw = new PrintWriter("sample2.txt");
         
-        fw.println();
-        fw.close();
+        // final String FILE_PATH = "sample2.txt";
         
+        // FileWriter fw = new FileWriter(FILE_PATH,true);
+        // PrintWriter pw = new PrintWriter(fw);
         
+        // InputStream in = System.in;
+        // InputStreamReader reader = new InputStreamReader(in);
+        // BufferedReader br = new BufferedReader(reader);
+        // String aa = br.readLine();
+        // pw.println(aa);
+        // pw.close();
+        
+        // // byte[] b = new byte[1024];
+        // // FileInputStream fi = new FileInputStream(FILE_PATH);
+        // // fi.read(b);
+        // // System.out.print(new String(b));
+        // // fi.close();
+        // FileReader fi = new FileReader(FILE_PATH);
+        // BufferedReader br2 = new BufferedReader(fi);
+        
+        // while(true) {
+        //     String lines = br2.readLine();
+        //     if (lines==null) break;
+        //     System.out.println(lines);
+        // }
+        // br2.close();
+
+        /**
+         * 5. 파일 내용 바꾸어 저장하기
+         * 
+         * 다음과 같은 내용을 지닌 파일 sample3.txt 파일이있다.
+         * 이파일의 내용중 "python" 이라는 문자열을 "java"로 바꾸어 저장해보자
+         * 
+         * Life is too short
+            you need python
+         */
+
+        final String TEXT_PATH_3 = "sample3.txt";
+        BufferedReader br4 = new BufferedReader(new FileReader(TEXT_PATH_3));
+        ArrayList<String> data = new ArrayList<>();
+        while(true) {
+            String lines = br4.readLine();
+            if (lines==null) break;
+            data.add(lines);
+        }
+        br4.close();
+
+        System.out.println(data);
+        // for(String line : data){
+        //     // System.out.println(line.contains("python"));
+        //     System.out.println(data.indexOf(line));
+        //     if (line.contains("python")) {
+        //         line.replaceAll(line, TEXT_PATH_3);
+        //     }
+        // }
+        String replaceData = String.join("\n", data);
+        replaceData = replaceData.replaceAll("python", "java");
+        System.out.println(replaceData);
+
+        PrintWriter rd = new PrintWriter(TEXT_PATH_3);
+        rd.write(replaceData);
+        rd.close();
+        
+
     }
 }
